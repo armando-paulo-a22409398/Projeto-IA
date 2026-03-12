@@ -1,0 +1,39 @@
+/* ── APP SHELL ────────────────────────────────────────────────────────────── */
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  max-width: 430px;
+  margin: 0 auto;
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+
+  /* On desktop, add a subtle frame */
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.8);
+}
+
+/* Desktop centering visual */
+@media (min-width: 480px) {
+  body {
+    background: #060a0f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  .app-shell {
+    height: 90dvh;
+    border-radius: 28px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+}
+
+.page-area {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}

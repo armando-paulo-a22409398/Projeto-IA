@@ -1,0 +1,105 @@
+/* ── RESET & VARIABLES ───────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg:        #0d1117;
+  --surface:   #161b22;
+  --surface2:  #1c2330;
+  --surface3:  #212830;
+  --border:    #2a3441;
+  --border2:   #3a4555;
+  --text:      #e6edf3;
+  --text2:     #c9d1d9;
+  --muted:     #7d8590;
+  --accent:    #39d353;
+  --accent-dim:#2aa63f;
+  --accent2:   #f7c948;
+  --danger:    #f85149;
+  --warn:      #f0a030;
+  --good:      #39d353;
+  --info:      #58a6ff;
+  --radius:    16px;
+  --radius-sm: 10px;
+  --radius-xs: 6px;
+  --shadow:    0 4px 24px rgba(0,0,0,0.5);
+  --shadow-sm: 0 2px 12px rgba(0,0,0,0.4);
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  min-height: 100dvh;
+  overscroll-behavior: none;
+}
+
+#root {
+  height: 100dvh;
+}
+
+button {
+  font-family: inherit;
+}
+
+input, select, textarea {
+  font-family: inherit;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
+
+/* ── ANIMATIONS ──────────────────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scanPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(57, 211, 83, 0.4); }
+  50%       { box-shadow: 0 0 0 14px rgba(57, 211, 83, 0); }
+}
+
+@keyframes scanLine {
+  0%   { top: 8%; }
+  100% { top: 88%; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(12px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+@keyframes toastOut {
+  from { opacity: 1; transform: translateX(-50%) translateY(0); }
+  to   { opacity: 0; transform: translateX(-50%) translateY(12px); }
+}

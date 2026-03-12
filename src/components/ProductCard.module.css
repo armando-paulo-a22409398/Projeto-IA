@@ -1,0 +1,165 @@
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 14px 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: transform 0.15s, box-shadow 0.15s;
+  position: relative;
+  overflow: hidden;
+  animation: fadeUp 0.3s ease both;
+}
+
+.card:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Left accent bar */
+.statusBar {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  border-radius: 3px 0 0 3px;
+}
+.good     .statusBar { background: var(--good); }
+.warning  .statusBar { background: var(--warn); }
+.critical .statusBar { background: var(--danger); }
+.expired  .statusBar { background: var(--danger); opacity: 0.6; }
+
+/* Emoji */
+.emoji {
+  font-size: 34px;
+  width: 50px; height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface2);
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+/* Info */
+.info { flex: 1; min-width: 0; }
+
+.name {
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.category {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.expiry {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 500;
+  margin-top: 6px;
+}
+
+.expiryDot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.expiry_good     { color: var(--good);   }
+.expiry_good     .expiryDot { background: var(--good); }
+.expiry_warning  { color: var(--warn);   }
+.expiry_warning  .expiryDot { background: var(--warn); }
+.expiry_critical { color: var(--danger); }
+.expiry_critical .expiryDot { background: var(--danger); }
+.expiry_expired  { color: var(--danger); opacity: 0.7; }
+.expiry_expired  .expiryDot { background: var(--danger); }
+
+/* Controls */
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.qtyRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.qtyBtn {
+  width: 28px; height: 28px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  color: var(--text);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.qtyBtn:hover {
+  background: var(--accent);
+  color: #0d1117;
+  border-color: var(--accent);
+}
+
+.qty {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  min-width: 22px;
+  text-align: center;
+}
+
+.consumeBtn {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 11px;
+  cursor: pointer;
+  padding: 2px 4px;
+  transition: color 0.15s;
+  border-radius: 4px;
+}
+
+.consumeBtn:hover { color: var(--accent); }
+
+/* Progress bar (expiry urgency) */
+.progressBar {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--border);
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: 0 2px 2px 0;
+  transition: width 0.5s ease;
+}
+
+.progress_good     { background: var(--good); }
+.progress_warning  { background: var(--warn); }
+.progress_critical { background: var(--danger); }
+.progress_expired  { background: var(--danger); opacity: 0.5; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
