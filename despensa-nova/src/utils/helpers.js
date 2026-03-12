@@ -1,12 +1,10 @@
-import { formatDistanceToNow, differenceInDays, parseISO } from 'date-fns';
-import { pt } from 'date-fns/locale';
-
 // ── EXPIRY HELPERS ──────────────────────────────────────────────────────────
 export function getDaysUntilExpiry(dateStr) {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   const expiry = new Date(dateStr);
-  return differenceInDays(expiry, today);
+  expiry.setHours(0, 0, 0, 0);
+  return Math.ceil((expiry - today) / (1000 * 60 * 60 * 24));
 }
 
 export function getExpiryStatus(dateStr) {
@@ -37,22 +35,25 @@ export function getExpiryColor(status) {
 
 // ── DATE FORMATTERS ─────────────────────────────────────────────────────────
 export function formatRelativeDate(dateStr) {
-  try {
-    return formatDistanceToNow(parseISO(dateStr), { addSuffix: true, locale: pt });
-  } catch {
-    return dateStr;
-  }
+  const days = getDaysUntilExpiry(dateStr);
+  const abs  = Math.abs(days);
+  if (days < 0)  return `há ${abs} dia${abs > 1 ? 's' : ''}`;
+  if (days === 0) return 'hoje';
+  if (days === 1) return 'amanhã';
+  if (days < 7)  return `em ${days} dias`;
+  const weeks = Math.floor(days / 7);
+  return `em ${weeks} semana${weeks > 1 ? 's' : ''}`;
 }
 
 // ── RECIPE MATCHING ─────────────────────────────────────────────────────────
 export function getRecipeMatch(recipe, inventory) {
   const inventoryNames = inventory.map(i => i.name.toLowerCase());
 
-  const required = recipe.required_ingredients;
+  const required  = recipe.required_ingredients;
   const available = required.filter(ing =>
     inventoryNames.some(n => n.includes(ing.toLowerCase()) || ing.toLowerCase().includes(n))
   );
-  const missing = required.filter(ing =>
+  const missing   = required.filter(ing =>
     !inventoryNames.some(n => n.includes(ing.toLowerCase()) || ing.toLowerCase().includes(n))
   );
 
